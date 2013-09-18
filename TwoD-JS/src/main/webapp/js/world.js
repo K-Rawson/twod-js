@@ -49,10 +49,15 @@ World.loadMap = function(map) {
 	this.map = map;
 	this.map.sprite.image = new Image();
 	this.map.sprite.image.src = this.map.sprite.src;
-	console.log(this.map.tiles);
 	for ( var tile in this.map.tiles) {
 		World.tiles.push(new Tile(this.map.tiles[tile].x,
 				this.map.tiles[tile].y, this.map.tiles[tile].id,
 				this.map.tiles[tile].type, this.map.sprite));
 	}
+};
+
+
+World.getRegion = function() {
+	
+	
 };

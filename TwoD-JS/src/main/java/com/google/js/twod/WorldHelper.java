@@ -11,9 +11,9 @@ public class WorldHelper {
 	public static List<WorldTileModel> generateWorld(int x, int y) {
 		List<WorldTileModel> tiles = new ArrayList<WorldTileModel>();
 
-		for (int yy = (16 / 2) * -1; yy < (16 / 2); yy++) {
-			for (int xx = (16 / 2) * -1; xx < (16 / 2); xx++) {
-				System.out.println("Status > Create World Tile X=" + xx + " Y=" + yy);
+		for (int yy = (2 / 2) * -1; yy < (2 / 2); yy++) {
+			for (int xx = (2 / 2) * -1; xx < (2 / 2); xx++) {
+				System.out.println("Status > Create World Tile X=" + xx + " Y=" + yy + " id=" + (WorldTileModel.count + 1));
 				tiles.add(new WorldTileModel(1, xx, yy));
 			}
 		}
@@ -23,7 +23,7 @@ public class WorldHelper {
 	
 	public static List<WorldTileModel> getWorldTileRegion(int x, int y) {
 		List<WorldTileModel> tiles = new ArrayList<WorldTileModel>();
-		tiles = WorldStore.tiles;
+		//tiles = WorldStore.tiles;
 		
 		//TODO only get the correct sub list of tiles
 		

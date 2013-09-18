@@ -44,11 +44,11 @@ TwoD.run = (function() {
 	var startTime = (new Date).getTime();
 	return function() {
 		// TEST for fps increase to 600 bug
-		// aloops = 0;
+		// loops = 0;
 		// while (!Game.paused && (new Date).getTime() > nextGameTick && loops <
 		// Game.maxFrameSkip) {
 		TwoD.update(nextGameTick - startTime);
-		// nextGameTick += Game.skipTicks;
+		nextGameTick += TwoD.skipTicks;
 		// loops++;
 		// }
 		TwoD.draw();

@@ -23,15 +23,17 @@ public class WorldService extends HttpServlet {
 	 * Handles the get method for the restful client request
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String location = request.getParameter("loc");
-		String json = new Gson().toJson(WorldStore.tiles);
+		String x = request.getParameter("x");
+		String y = request.getParameter("x");
+		//String json = new Gson().toJson(WorldStore.tiles);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		Writer writer = null;
 
 		try {
 			writer = response.getWriter();
-			writer.write(json);
+			//writer.write(json);
+			writer.write("[]");
 		} finally {
 			writer.close();
 		}

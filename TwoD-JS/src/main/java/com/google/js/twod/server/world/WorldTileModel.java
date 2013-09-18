@@ -1,15 +1,28 @@
 package com.google.js.twod.server.world;
 
-public class WorldTileModel {
 
+public class WorldTileModel{
+
+	public static long count = 0;
+	private  long id; 
 	private int type;
 	private int x;
 	private int y;
 
 	public WorldTileModel(int type, int x, int y) {
+		count++;
+		this.id = count;
 		this.type = type;
 		this.x = x;
 		this.y = y;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public int getType() {

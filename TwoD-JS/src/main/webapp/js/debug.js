@@ -3,6 +3,7 @@ Debug = function() {
     this.renderStats = new Stats('render', 100);
     this.gameTickbox = new GameTickbox();
     this.objCount = new ObjCount();
+    this.worldInfo = new WorldInfo();
     this.camInfo = new CamInfo();
 };
 
@@ -12,11 +13,13 @@ Debug.prototype = {
         viewport.appendChild(this.renderStats.domElement);
         viewport.appendChild(this.gameTickbox.domElement);
         viewport.appendChild(this.objCount.domElement);
+        viewport.appendChild(this.worldInfo.domElement);
         viewport.appendChild(this.camInfo.domElement);
         this.renderStats.position(this.updateStats.domElement.offsetHeight, 0);
         this.gameTickbox.position(0, this.updateStats.domElement.offsetWidth);
         this.objCount.position(this.gameTickbox.domElement.offsetHeight, this.updateStats.domElement.offsetWidth);
-        this.camInfo.position(50, this.updateStats.domElement.offsetWidth);
+        this.worldInfo.position(42, this.updateStats.domElement.offsetWidth);
+        this.camInfo.position(64, this.updateStats.domElement.offsetWidth);
     },
     update: function() {
         this.updateStats.update();
@@ -26,6 +29,7 @@ Debug.prototype = {
     	this.renderStats.update();
     	this.gameTickbox.update();
         this.objCount.update();
+        this.worldInfo.update();
         this.camInfo.update();
     }
 };
@@ -168,7 +172,6 @@ var GameTickbox = function() {
     container.style.cssText = 'width:120px;height:20px;opacity:0.9;cursor:pointer;z-index:10000;position:absolute;color:#FFFFFF;text-shadow:1px 1px #000000';
 
     return {
-        REVISION: 11,
         domElement: container,
         position: function(x, y) {
             container.style.top = x + "px";
@@ -186,14 +189,30 @@ var ObjCount = function() {
     container.style.cssText = 'width:100px;height:20px;opacity:0.9;cursor:pointer;z-index:10000;position:absolute;color:#FFFFFF;text-shadow:1px 1px #000000';
 
     return {
-        REVISION: 11,
         domElement: container,
         position: function(x, y) {
             container.style.top = x + "px";
             container.style.left = y + "px";
         },
         update: function() {
-            container.innerHTML = "O: [" + World.tiles.length + "] " + (World.entities.length + 1);
+            container.innerHTML = "O: [" + World.tiles.length + "] E: [" + (World.entities.length + 1) + "]";
+        }
+    };
+};
+var WorldInfo = function() {
+
+    var container = document.createElement('div');
+    container.id = "debug-worldInfo";
+    container.style.cssText = 'width:150px;height:40px;opacity:0.9;cursor:pointer;z-index:10000;position:absolute;color:#FFFFFF;text-shadow:1px 1px #000000';
+
+    return {
+        domElement: container,
+        position: function(x, y) {
+            container.style.top = x + "px";
+            container.style.left = y + "px";
+        },
+        update: function() {
+            container.innerHTML = "TileX: " + ((TwoD.screen.world.camera.x / 128) >> 0);
         }
     };
 };
@@ -204,7 +223,6 @@ var CamInfo = function() {
     container.style.cssText = 'width:150px;height:40px;opacity:0.9;cursor:pointer;z-index:10000;position:absolute;color:#FFFFFF;text-shadow:1px 1px #000000';
 
     return {
-        REVISION: 11,
         domElement: container,
         position: function(x, y) {
             container.style.top = x + "px";
